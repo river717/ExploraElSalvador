@@ -44,7 +44,9 @@ Landing page para descubrir destinos turísticos de El Salvador. El proyecto per
 
 3. En Supabase, abre **SQL Editor** y ejecuta el contenido de [`supabase/schema.sql`](supabase/schema.sql). El script crea la tabla `destinations`, activa RLS, habilita la lectura pública y agrega cinco destinos de ejemplo.
 
-4. En el directorio raíz del proyecto, crea `.env.local` con los valores de **Connect** o **Settings → API Keys** de tu proyecto Supabase:
+4. Para añadir 15 destinos más a una base existente, abre una consulta nueva en **SQL Editor**, copia y ejecuta [`supabase/add-destinations.sql`](supabase/add-destinations.sql). Es idempotente: si se ejecuta más de una vez, no crea duplicados. El catálogo queda con 20 destinos en total.
+
+5. En el directorio raíz del proyecto, crea `.env.local` con los valores de **Connect** o **Settings → API Keys** de tu proyecto Supabase:
 
    ```env
    NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
@@ -53,13 +55,13 @@ Landing page para descubrir destinos turísticos de El Salvador. El proyecto per
 
    Sustituye los ejemplos por tus valores. No subas `.env.local` al repositorio. La aplicación solo necesita la URL del proyecto y la clave **publishable**; no uses una clave `secret` o `service_role`.
 
-5. Inicia el servidor local:
+6. Inicia el servidor local:
 
    ```bash
    npm run dev
    ```
 
-6. Abre [http://localhost:3000](http://localhost:3000).
+7. Abre [http://localhost:3000](http://localhost:3000).
 
 ## Despliegue en Vercel
 
