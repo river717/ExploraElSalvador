@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -7,7 +8,22 @@ type DestinationPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export default async function DestinationPage({ params }: DestinationPageProps) {
+export default function DestinationPage({ params }: DestinationPageProps) {
+  return (
+    <Suspense
+      fallback={
+        <main className={styles.shell} aria-busy="true" aria-live="polite">
+          <p className={styles.eyebrow}>Explora El Salvador</p>
+          <h1 className={styles.title}>Cargando destino…</h1>
+        </main>
+      }
+    >
+      <DestinationContent params={params} />
+    </Suspense>
+  );
+}
+
+async function DestinationContent({ params }: DestinationPageProps) {
   const { slug } = await params;
   const supabase = createSupabaseServerClient();
   const { data: destination, error } = await supabase

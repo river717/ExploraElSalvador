@@ -1,8 +1,24 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import styles from "./destinos.module.css";
 
-export default async function DestinosPage() {
+export default function DestinosPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className={styles.shell} aria-busy="true" aria-live="polite">
+          <p className={styles.eyebrow}>Explora El Salvador</p>
+          <h1 className={styles.title}>Cargando destinos…</h1>
+        </main>
+      }
+    >
+      <DestinationsContent />
+    </Suspense>
+  );
+}
+
+async function DestinationsContent() {
   const supabase = createSupabaseServerClient();
 
   const { data: destinations, error } = await supabase

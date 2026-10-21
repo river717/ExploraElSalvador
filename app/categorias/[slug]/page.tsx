@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -15,7 +16,22 @@ const categories: Record<string, string> = {
   pueblos: "Pueblos",
 };
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ params }: CategoryPageProps) {
+  return (
+    <Suspense
+      fallback={
+        <main className={styles.shell} aria-busy="true" aria-live="polite">
+          <p className={styles.eyebrow}>Explora El Salvador</p>
+          <h1 className={styles.title}>Buscando destinos…</h1>
+        </main>
+      }
+    >
+      <CategoryContent params={params} />
+    </Suspense>
+  );
+}
+
+async function CategoryContent({ params }: CategoryPageProps) {
   const { slug } = await params;
   const category = categories[slug];
   if (!category) notFound();
