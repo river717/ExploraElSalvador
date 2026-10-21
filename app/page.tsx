@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import styles from "./home.module.css";
-import ThemeToggle from "./components/theme-toggle";
+import SiteHeader from "./components/site-header";
 
 const categories = [
   { label: "Playas", slug: "playa", icon: "☀", description: "Sol, olas y atardeceres" },
@@ -14,18 +14,7 @@ const categories = [
 export default function Home() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <Link className={styles.brand} href="/" aria-label="Explora El Salvador, inicio">
-          <span className={styles.brandMark}>E</span>
-          <span>explora<span className={styles.brandLight}>SV</span></span>
-        </Link>
-        <nav className={styles.nav} aria-label="Navegación principal">
-          <Link href="/destinos">Destinos</Link>
-          <a href="#categorias">Experiencias</a>
-          <Link className={styles.navCta} href="/destinos">Empezar a explorar <span aria-hidden="true">↗</span></Link>
-          <ThemeToggle className={styles.themeToggle} />
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>

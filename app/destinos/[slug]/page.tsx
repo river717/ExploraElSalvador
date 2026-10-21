@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import SiteHeader from "../../components/site-header";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
@@ -10,16 +11,19 @@ type DestinationPageProps = {
 
 export default function DestinationPage({ params }: DestinationPageProps) {
   return (
-    <Suspense
-      fallback={
-        <main className={styles.shell} aria-busy="true" aria-live="polite">
+    <>
+      <SiteHeader />
+      <Suspense
+        fallback={
+          <main className={styles.shell} aria-busy="true" aria-live="polite">
           <p className={styles.eyebrow}>Explora El Salvador</p>
           <h1 className={styles.title}>Cargando destino…</h1>
-        </main>
-      }
-    >
-      <DestinationContent params={params} />
-    </Suspense>
+          </main>
+        }
+      >
+        <DestinationContent params={params} />
+      </Suspense>
+    </>
   );
 }
 

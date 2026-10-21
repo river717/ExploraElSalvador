@@ -3,6 +3,9 @@
   --site-foreground: #173d33;
   --toggle-background: #ffffff;
   --toggle-border: #dce8e1;
+  --site-muted: #53675e;
+  --site-accent: #126b53;
+  --nav-border: #e4ebe6;
 }
 
 :root[data-theme="dark"] {
@@ -11,6 +14,9 @@
   --site-foreground: #edf5ef;
   --toggle-background: #1d2a23;
   --toggle-border: #40564a;
+  --site-muted: #bdcfc3;
+  --site-accent: #72c9a5;
+  --nav-border: #34483c;
 }
 
 html { height: 100%; }
