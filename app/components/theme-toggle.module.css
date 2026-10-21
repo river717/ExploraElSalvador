@@ -1,0 +1,17 @@
+.button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--toggle-border);
+  border-radius: 50%;
+  background: var(--toggle-background);
+  color: var(--site-foreground);
+  cursor: pointer;
+  font-size: 1.15rem;
+  transition: transform 160ms ease, background 160ms ease;
+}
+.button:hover { transform: rotate(-8deg); }
+.button:focus-visible { outline: 3px solid #55a889; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } }

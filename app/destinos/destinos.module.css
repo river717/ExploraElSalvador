@@ -1,7 +1,26 @@
 .shell {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
+  --ink: #163b32;
+  --muted: #53665f;
+  --accent: #147d67;
+  --line: #dce8e1;
+  --surface: #ffffff;
+  --surface-soft: #edf6f1;
+  --notice-bg: #fff7e8;
+  --notice-text: #68480a;
+  color: var(--ink);
   padding: 64px 0 88px;
+}
+:global(html[data-theme="dark"]) .shell {
+  --ink: #edf5ef;
+  --muted: #bdcfc3;
+  --accent: #72c9a5;
+  --line: #34483c;
+  --surface: #19251e;
+  --surface-soft: #24342a;
+  --notice-bg: #3b3020;
+  --notice-text: #f2d79c;
 }
 .hero {
   margin-bottom: 36px;
@@ -9,21 +28,21 @@
 }
 .eyebrow {
   margin-bottom: 12px;
-  color: #147d67;
+  color: var(--accent);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .title {
-  color: #163b32;
+  color: var(--ink);
   font-size: clamp(2.3rem, 6vw, 4.5rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
 .intro {
   margin-top: 16px;
-  color: #53665f;
+  color: var(--muted);
   font-size: 1.1rem;
   line-height: 1.7;
 }
@@ -37,31 +56,31 @@
   min-height: 220px;
   flex-direction: column;
   padding: 24px;
-  border: 1px solid #dce8e1;
+  border: 1px solid var(--line);
   border-radius: 20px;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 12px 30px rgb(22 59 50 / 5%);
 }
 .cardLink {
-  color: #163b32;
+  color: var(--ink);
   font-size: 1.35rem;
   font-weight: 700;
 }
 .cardLink:hover,
 .back:hover {
-  color: #147d67;
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 .meta {
   margin-top: 8px;
-  color: #147d67;
+  color: var(--accent);
   font-size: 0.9rem;
   font-weight: 600;
 }
 .description {
   margin-top: 16px;
-  color: #53665f;
+  color: var(--muted);
   line-height: 1.65;
 }
 .cardCategory {
@@ -70,22 +89,22 @@
   margin-top: auto;
   padding: 7px 11px;
   border-radius: 999px;
-  background: #edf6f1;
-  color: #28634f;
+  background: var(--surface-soft);
+  color: var(--accent);
   font-size: 0.82rem;
   font-weight: 600;
 }
 .back {
   display: inline-block;
   margin-bottom: 28px;
-  color: #28634f;
+  color: var(--accent);
   font-weight: 700;
 }
 .message {
   padding: 18px 20px;
   border-radius: 14px;
-  background: #fff7e8;
-  color: #68480a;
+  background: var(--notice-bg);
+  color: var(--notice-text);
   line-height: 1.6;
 }
 @media (max-width: 600px) {

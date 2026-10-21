@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import styles from "./home.module.css";
+import ThemeToggle from "./components/theme-toggle";
 
 const categories = [
   { label: "Playas", slug: "playa", icon: "☀", description: "Sol, olas y atardeceres" },
@@ -22,6 +23,7 @@ export default function Home() {
           <Link href="/destinos">Destinos</Link>
           <a href="#categorias">Experiencias</a>
           <Link className={styles.navCta} href="/destinos">Empezar a explorar <span aria-hidden="true">↗</span></Link>
+          <ThemeToggle className={styles.themeToggle} />
         </nav>
       </header>
 
