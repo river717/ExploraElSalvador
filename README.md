@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Explora El Salvador
 
-## Getting Started
+Landing page para descubrir destinos turísticos de El Salvador. El proyecto permite explorar lugares por categoría, consultar la información de cada destino y muestra destinos destacados desde Supabase.
 
-First, run the development server:
+## Enlaces
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Sitio en producción:** https://explora-el-salvador-one.vercel.app/
+- **Repositorio:** https://github.com/river717/ExploraElSalvador
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologías
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16 con App Router y Server Components.
+- TypeScript y CSS Modules, con diseño adaptable a pantallas móviles.
+- Supabase como base de datos serverless.
+- Vercel para el despliegue.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Funcionalidades y rutas
 
-## Learn More
+- `/`: landing con categorías y destinos destacados consultados desde Supabase.
+- `/destinos`: listado de destinos.
+- `/destinos/[slug]`: detalle dinámico de un destino, por ejemplo `/destinos/el-tunco`.
+- `/categorias/[slug]`: destinos filtrados por categoría, por ejemplo `/categorias/playa`.
+- Estados de carga con `Suspense` y mensajes de error para las consultas.
 
-To learn more about Next.js, take a look at the following resources:
+## Requisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 22 o posterior.
+- Una cuenta y un proyecto de Supabase.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuración local
 
-## Deploy on Vercel
+1. Clona el repositorio y entra a la carpeta:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone https://github.com/river717/ExploraElSalvador.git
+   cd ExploraElSalvador
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. En Supabase, abre **SQL Editor** y ejecuta el contenido de [`supabase/schema.sql`](supabase/schema.sql). El script crea la tabla `destinations`, activa RLS, habilita la lectura pública y agrega cinco destinos de ejemplo.
+
+4. En el directorio raíz del proyecto, crea `.env.local` con los valores de **Connect** o **Settings → API Keys** de tu proyecto Supabase:
+
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_tu_clave
+   ```
+
+   Sustituye los ejemplos por tus valores. No subas `.env.local` al repositorio. La aplicación solo necesita la URL del proyecto y la clave **publishable**; no uses una clave `secret` o `service_role`.
+
+5. Inicia el servidor local:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Abre [http://localhost:3000](http://localhost:3000).
+
+## Despliegue en Vercel
+
+Importa el repositorio en Vercel y agrega las variables `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` para los entornos que usarás. Después, inicia el despliegue. Los cambios enviados a la rama `main` se pueden publicar desde la integración de Git.
+
+## Seguridad de datos
+
+La tabla `destinations` tiene habilitado Row Level Security (RLS). La política incluida permite que los roles `anon` y `authenticated` lean los destinos; no otorga permisos de escritura desde la aplicación.
